@@ -1,29 +1,13 @@
 const express = require("express");
-
 const app = express();
-
 const bodyParser = require("body-parser")
-
-
+const authRoutes = require("./routes/auth/auth")
 
 app.use(bodyParser.urlencoded({extended:true}))
 
-app.get('/', (req,res)=>{
-    res.send(`    <div>
-    <form action="" method="POST">
-        <input name="email" placeholder="email">
-        <input name="senha" placeholder="senha">
-        <input name="confirmSenha" placeholder="confirmSenha">
-        <button>Cadastrar</button>
-    </form>
-</div>`)
-})
+app.use(express.static("public"));
 
-app.post('/', (req,res)=>{
-    console.log(req.body)
-    res.send("Foi meu fih")
-})
-
+app.use("/admin", authRoutes);
 
 app.listen(3000, ()=>{
     console.log("Conectado")

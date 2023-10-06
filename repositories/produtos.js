@@ -1,27 +1,10 @@
-const fs = require('fs')
-const crypto = require('crypto');
-const { error } = require('console');
+const fs = require("fs");
+const crypto = require("crypto");
 
-class produtos {
-    //criar metodos
-    constructor(fileName){
-        this.fileName = fileName;
+const Repository = require("./repository");
 
-        if (!fileName){
-            throw new error("Você informar um nome via arquivo!")
-        } try{
-            fs.accessSync(this.fileName)
-        } catch (error){
-            fs.writeFileSync(this.fileName, '[]')
-        }
-    }
-
-    async getAll(){
-        return JSON.parse(await fs.promises.readFile(this.fileName))
-    }
-
-    async create(atributos){
-        
-    }
-
+class ProductRepository extends Repository {
+  apenasProduto(){}
 }
+
+module.exports = new ProductRepository("products.json");
